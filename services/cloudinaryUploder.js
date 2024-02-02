@@ -9,7 +9,7 @@ const cloudinaryUploder = async (filePath) => {
   // console.log(filePath);
   try {
     const result = await cloudinary.uploader.upload(filePath);
-    // console.log(result);
+    console.log(result);
     return result;
   } catch (error) {
     // next(error.message);
