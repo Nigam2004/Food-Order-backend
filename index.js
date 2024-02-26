@@ -1,6 +1,8 @@
 const express = require("express");
+const errorHandler = require("./middleware/errorHandler");
 require("dotenv").config();
 const food_item = require("./router/food-item");
+const user = require("./router/user");
 const upload = require("./middleware/multer");
 const app = express();
 const foodItem = require("./model/food-item");
@@ -13,8 +15,9 @@ dbConection();
 //     console.log(result);
 //     res.send({ item: result });
 //   });
+app.use("/user", user);
 app.use("/food-order", upload, food_item);
-
-app.listen(5000, () => {
-  console.log("app listening on port 5000");
+app.use(errorHandler);
+app.listen(4000, () => {
+  console.log("app listening on port 4000");
 });
