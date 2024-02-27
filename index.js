@@ -15,6 +15,9 @@ dbConection();
 //     console.log(result);
 //     res.send({ item: result });
 //   });
+app.get("/user/:_id/:token", (req, res) => {
+  res.send("<h1>password</h1>");
+});
 app.use("/user", user);
 app.use("/food-order", upload, food_item);
 app.use(errorHandler);

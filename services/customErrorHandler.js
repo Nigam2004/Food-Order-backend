@@ -7,6 +7,9 @@ class CustomErrorHandler extends Error {
   static alreadyExist(message) {
     return new CustomErrorHandler(409, message);
   }
+  static notExist(message) {
+    return new CustomErrorHandler(409, message);
+  }
 }
 
 module.exports = CustomErrorHandler;

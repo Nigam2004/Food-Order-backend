@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const mailService = (userGmail, message) => {
+const mailService = (userGmail, subject, message) => {
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
@@ -12,7 +12,7 @@ const mailService = (userGmail, message) => {
   var mailOption = {
     from: "babubisoyi307@gmail.com",
     to: userGmail,
-    subject: "Registartion on food-order-application",
+    subject: subject,
     text: message,
   };
 
@@ -21,6 +21,7 @@ const mailService = (userGmail, message) => {
     error ? console.log(error) : console.log("succsss");
     // console.log(info);
   });
+  return true;
 };
 
 module.exports = mailService;

@@ -31,8 +31,12 @@ exports.userRegister = async (req, res, next) => {
     confirmPassword: C_hashedPassword,
   });
   let newResult = await newUser.save();
-  res.send({ success: true, data: newResult });
-  mailService(newResult.email, "register successful👍");
+  const isMailed = mailService(
+    newResult.email,
+    "User Registration",
+    "register successful👍"
+  );
+  if (isMailed) res.send({ success: true, data: newResult });
 };
 
 exports.userLogin = async (req, res, next) => {
