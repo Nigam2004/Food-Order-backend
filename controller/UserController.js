@@ -3,7 +3,7 @@ const joi = require("joi");
 const bcrypt = require("bcrypt");
 const jwtServices = require("../services/JwtServices");
 const CustomErrorHandle = require("../services/customErrorHandler");
-const mailService = require("../services/mailService");
+const registrationmail = require("../mails/registrationmail");
 exports.userRegister = async (req, res, next) => {
   const registerSchema = joi.object({
     email: joi.string().email().required(),
@@ -31,11 +31,7 @@ exports.userRegister = async (req, res, next) => {
     confirmPassword: C_hashedPassword,
   });
   let newResult = await newUser.save();
-  const isMailed = mailService(
-    newResult.email,
-    "User Registration",
-    "register successful👍"
-  );
+  const isMailed = registrationmail(newResult.email);
   if (isMailed) res.send({ success: true, data: newResult });
 };
 

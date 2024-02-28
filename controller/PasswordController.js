@@ -1,10 +1,10 @@
 const user = require("../model/user");
 const CustomErrorHandle = require("../services/customErrorHandler");
 const jwtServices = require("../services/JwtServices");
-const mailService = require("../services/mailService");
+const forgetpasswordMail = require("../mails/forgetpasswordMail");
 exports.forgetPassword = async (req, res, next) => {
   const { email } = req.body;
-  console.log(email);
+  // console.log(email);
   try {
     const userData = await user.findOne({ email });
     // console.log(userData);
@@ -18,11 +18,8 @@ exports.forgetPassword = async (req, res, next) => {
     });
 
     const forgetPasswordUrl = `http://localhost:4000/user/${userData._id}/${token}`;
-    let isMailed = mailService(
-      userData.email,
-      "forget-password-URL",
-      forgetPasswordUrl
-    );
+    // console.log(forgetPasswordUrl);
+    let isMailed = forgetpasswordMail(userData.email, forgetPasswordUrl);
     if (isMailed) {
       res.send({
         success: true,
