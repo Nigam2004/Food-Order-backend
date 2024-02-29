@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const jwtServices = require("../services/JwtServices");
 const CustomErrorHandle = require("../services/customErrorHandler");
 const registrationmail = require("../mails/registrationmail");
+
 exports.userRegister = async (req, res, next) => {
   const registerSchema = joi.object({
     email: joi.string().email().required(),
@@ -35,6 +36,7 @@ exports.userRegister = async (req, res, next) => {
   if (isMailed) res.send({ success: true, data: newResult });
 };
 
+// ...........Login...........
 exports.userLogin = async (req, res, next) => {
   const loginSchema = joi.object({
     email: joi.string().email().required(),
@@ -65,5 +67,18 @@ exports.userLogin = async (req, res, next) => {
   } catch (err) {
     console.log(err);
     return next(err);
+  }
+};
+
+exports.myData = async (req, res, next) => {
+  const userId = req.user._id;
+  try {
+    let userData = await user
+      .findOne({ _id: userId })
+      .select("-password -confirmPassword -updatedAt -__v");
+
+    res.send(userData);
+  } catch (error) {
+    console.log(error);
   }
 };

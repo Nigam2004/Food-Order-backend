@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Created</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+
+      .container {
+        width: 80%;
+        margin: 5% auto;
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 30px;
+        text-align: center;
+      }
+
+      .success-title {
+        color: #0a0b0a;
+        margin-bottom: 20px;
+      }
+
+      .success-message {
+        color: gray;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img
+        src="https://res.cloudinary.com/dbgmzkuuh/image/upload/c_scale,h_103,w_138/v1709193297/realtick_cu1e1u.png"
+      />
+      <h1 class="success-title">Thank You for Registration</h1>
+      <h4><%= userGmail %></h4>
+      <p class="success-message">
+        Congratulations, your account has been successfully created.
+      </p>
+    </div>
+  </body>
+</html>
