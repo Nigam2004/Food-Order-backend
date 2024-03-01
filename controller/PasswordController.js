@@ -22,11 +22,17 @@ exports.forgetPassword = async (req, res, next) => {
     let isMailed = forgetpasswordMail(userData.email, forgetPasswordUrl);
     if (isMailed) {
       res.send({
-        success: true,
+        result: true,
         message: "Forget Password link has been sent to your registered email.",
       });
     }
   } catch (error) {
     return next(error);
   }
+};
+
+exports.resetPassword = (req, res, next) => {
+  const { newPassword, confirmPassword } = req.body;
+  console.log(newPassword);
+  res.send("success");
 };
