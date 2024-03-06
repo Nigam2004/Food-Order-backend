@@ -7,10 +7,13 @@ const user = require("./router/user");
 const upload = require("./middleware/multer");
 const app = express();
 const foodItem = require("./model/food-item");
-app.use(express.json());
+// app.use(express.json());
 const dbConection = require("./dbConnect");
 dbConection();
-
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+// app.use(bodyParser());
 const cors = require("cors");
 app.use(
   cors({

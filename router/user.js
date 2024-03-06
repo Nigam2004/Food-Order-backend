@@ -14,5 +14,6 @@ router.get("/:_id/:token", async (req, res) => {
   const data = await ejs.renderFile(template);
   res.send(data);
 });
+
 router.post("/:_id/:token", passwordController.resetPassword);
 module.exports = router;

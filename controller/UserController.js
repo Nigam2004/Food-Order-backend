@@ -81,7 +81,7 @@ exports.myData = async (req, res, next) => {
       .findOne({ _id: userId })
       .select("-password -confirmPassword -updatedAt -__v");
 
-    res.send(userData);
+    res.send({ data: userData });
   } catch (error) {
     console.log(error);
   }

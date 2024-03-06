@@ -22,13 +22,23 @@ exports.addItem = async (req, res, next) => {
   res.send({ success: true, message: "Item uploaded", result });
 };
 
+exports.findAllItem = async (req, res, next) => {
+  try {
+    const result = await foodItem.find({});
+
+    res.send({ message: "success", result });
+  } catch (error) {
+    return next(error);
+  }
+};
+
 exports.findItem = async (req, res, next) => {
   try {
     const result = await foodItem.find({
       $or: [
         { food_name: { $regex: req.params.item } },
-        { food_name: { $regex: req.params.item } },
-        { food_name: { $regex: req.params.item } },
+        { price: { $regex: req.params.item } },
+        { food_type: { $regex: req.params.item } },
       ],
     });
 

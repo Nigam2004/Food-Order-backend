@@ -33,6 +33,6 @@ exports.forgetPassword = async (req, res, next) => {
 
 exports.resetPassword = (req, res, next) => {
   const { newPassword, confirmPassword } = req.body;
-  console.log(newPassword);
+  console.log(req);
   res.send("success");
 };
