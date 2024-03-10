@@ -3,19 +3,20 @@ const CustomErrorHandler = require("../services/customErrorHandler");
 
 const auth = async (req, res, next) => {
   const bareerToken = req.headers.authorization;
-  //   console.log(bareerToken);
+  // console.log(bareerToken);
   if (!bareerToken) {
     return next(CustomErrorHandler.unAuthorized("Unauthorized"));
   }
-  const token = bareerToken.split(" ")[1];
-  //   console.log(token);
+  let token = bareerToken.split(" ")[1];
+  // console.log(token);
   try {
-    const { _id, email } = await jwtServices.verify(token);
-    const user = { _id, email };
-    // console.log(user);
-    req.user = user;
+    const { _id, email } = jwtServices.verify(token);
+    const profileData = { _id, email };
+    // console.log(profileData);
+    req.user = profileData;
     next();
   } catch (error) {
+    // console.log(error);
     return next(CustomErrorHandler.unAuthorized("Unauthorized"));
   }
 };
