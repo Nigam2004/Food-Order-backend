@@ -36,8 +36,8 @@ app.use(
 app.use("/user", user);
 app.use("/food-order", upload, food_item);
 app.use(errorHandler);
-app.listen(4000, () => {
-  console.log("app listening on port 4000");
+app.listen(process.env.APP_PORT, () => {
+  console.log("app listening on port:" + process.env.APP_PORT);
 });
 
 // app.post("/home", async (req, res) => {
