@@ -17,7 +17,7 @@ exports.forgetPassword = async (req, res, next) => {
       email: userData.email,
     });
 
-    const forgetPasswordUrl = `http://localhost:4000/user/${userData._id}/${token}`;
+    const forgetPasswordUrl = `http://localhost:5173/${userData._id}/${token}`;
     // console.log(forgetPasswordUrl);
     let isMailed = forgetpasswordMail(userData.email, forgetPasswordUrl);
     if (isMailed) {

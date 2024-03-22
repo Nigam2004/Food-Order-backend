@@ -9,11 +9,11 @@ router.post("/register", UserController.userRegister);
 router.post("/login", UserController.userLogin);
 router.get("/mydata", auth, UserController.myData);
 router.post("/forget-password", passwordController.forgetPassword);
-router.get("/:_id/:token", async (req, res) => {
-  const template = path.join(__dirname, "../view/passwordChangepage.ejs");
-  const data = await ejs.renderFile(template);
-  res.send(data);
-});
-
 router.post("/:_id/:token", passwordController.resetPassword);
 module.exports = router;
+
+// router.get("/:_id/:token", async (req, res) => {
+//   const template = path.join(__dirname, "../view/passwordChangepage.ejs");
+//   const data = await ejs.renderFile(template);
+//   res.send(data);
+// });
