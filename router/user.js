@@ -9,7 +9,7 @@ router.post("/register", UserController.userRegister);
 router.post("/login", UserController.userLogin);
 router.get("/mydata", auth, UserController.myData);
 router.post("/forget-password", passwordController.forgetPassword);
-router.post("/:_id/:token", passwordController.resetPassword);
+router.post("/reset-password", auth, passwordController.resetPassword);
 module.exports = router;
 
 // router.get("/:_id/:token", async (req, res) => {

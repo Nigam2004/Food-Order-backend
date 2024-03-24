@@ -10,8 +10,8 @@ const auth = async (req, res, next) => {
   let token = bareerToken.split(" ")[1];
   // console.log(token);
   try {
-    const { _id, email } = jwtServices.verify(token);
-    const profileData = { _id, email };
+    const { _id, email, password } = jwtServices.verify(token);
+    const profileData = { _id, email, password };
     // console.log(profileData);
     req.user = profileData;
     next();
